@@ -17,5 +17,5 @@ i=0
  "reports/materials_lvee_2015", "conference_registrations/LVEE%20Winter%202016",
  "reports/materials_lvee_2016", "conference_registrations/LVEE%202016", "statistics/conference/LVEE%202016"].each do |x|
 	Capybara.visit("#{SITE}en/#{x}")
-	Capybara.save_screenshot("./screenshots/#{i+=1}.png")
+	Capybara.save_screenshot("./screenshots/#{x}.png")
 end
