@@ -30,8 +30,8 @@ module Cr
     # Capybara.visit Capybara.find('a', :text => 'Conferences admin')[:href]
     Capybara.click_link('as_admin__conferences-new--link')
     Capybara.fill_in('record_name_', :with => @namecof)
-    Capybara.fill_in('record_start_date_', :with => '2016-11-30')
-    Capybara.fill_in('record_finish_date_',:with => '2016-12-14')
+    Capybara.fill_in('record_start_date_', :with => '2020-11-30')
+    Capybara.fill_in('record_finish_date_',:with => '2020-12-14')
     sleep 3
     Capybara.check('record_registration_opened_')
     Capybara.click_button('Create')
