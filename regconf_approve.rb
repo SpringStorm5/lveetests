@@ -10,21 +10,6 @@ module Reg
     #   @name, @age, @weight = name, age, weight
     # end
 
-    # def login(login)
-    #   @login = login
-    # end
-
-    # def password(password)
-    #   @password = password
-    # end
-
-    # def loginadmin(loginadmin)
-    #   @loginadmin = loginadmin
-    # end
-
-    # def passwordadmin(passwordadmin)
-    #   @passwordadmin = passwordadmin
-    # end
 
     def site(site)
       @site = site
@@ -34,16 +19,27 @@ module Reg
       @namecof = namecof
     end
 
-
     def login (login, password)
-
       # #логинимся
       Capybara.visit(@site)
       Capybara.click_link('Log')
+      sleep 2
       Capybara.fill_in('login', :with => login) #Fongieunique
       Capybara.fill_in('password', :with => password)
       Capybara.click_button('Log')
+    end
 
+    def create
+      Capybara.visit("#{SITE}en/admin/conferences") #.//*[@id='sub-menu']/li[2]/ul/li[2]/a
+      # Capybara.click_link('Admin')
+      # Capybara.visit Capybara.find('a', :text => 'Conferences admin')[:href]
+      Capybara.click_link('as_admin__conferences-new--link')
+      Capybara.fill_in('record_name_', :with => @namecof)
+      Capybara.fill_in('record_start_date_', :with => '2020-11-30')
+      Capybara.fill_in('record_finish_date_',:with => '2020-12-14')
+      sleep 3
+      Capybara.check('record_registration_opened_')
+      Capybara.click_button('Create')
     end
 
     def reg_conference_first
@@ -87,7 +83,7 @@ module Reg
       #Capybara.find(:a, :text => 'Confirm').click_link
       sleep 5
       Capybara.check('record_days_', match: :first)
-      Capybara.fill_in('record[meeting]', :with => '+375256279508')
+      Capybara.fill_in('record[phone]', :with => '+375256279508')
       Capybara.check('record_floor')
       #Capybara.click_button('Select')
       Capybara.find('#record_transport_to').find(:xpath, 'option[2]').select_option
@@ -103,19 +99,14 @@ end
 
 yes = Reg::Registration.new
 
-yes.site("#{SITE}")
-
-
-# yes.password(6279508)
-# yes.loginadmin('Darling')
-# yes.passwordadmin(6279508)
 yes.namecof('test5')
-yes.login('Hunny', 6279508)
-#yes.loginfirst
+yes.site("#{SITE}")
+yes.login('Test', 6279508)
+yes.create
+yes.login('User', 6279508)
 yes.reg_conference_first
-yes.login('Darling', 6279508)
-#yes.login_admin
-#yes.approve_user
+yes.login('Test', 6279508)
 yes.approve_all
-yes.login('Hunny', 6279508)
+yes.login('User', 6279508)
 yes.two_anketa
+
