@@ -23,7 +23,7 @@ module Reg
       # #логинимся
       Capybara.visit(@site)
       Capybara.click_link('Log')
-      sleep 2
+      sleep 1
       Capybara.fill_in('login', :with => login) #Fongieunique
       Capybara.fill_in('password', :with => password)
       Capybara.click_button('Log')
@@ -40,6 +40,7 @@ module Reg
       sleep 3
       Capybara.check('record_registration_opened_')
       Capybara.click_button('Create')
+      Capybara.click_link('Log')
     end
 
     def reg_conference_first
@@ -101,11 +102,11 @@ yes = Reg::Registration.new
 
 yes.namecof('test5')
 yes.site("#{SITE}")
-yes.login('Test', 6279508)
+yes.login('Darling2', 6279508)
 yes.create
 yes.login('User', 6279508)
 yes.reg_conference_first
-yes.login('Test', 6279508)
+yes.login('Darling2', 6279508)
 yes.approve_all
 yes.login('User', 6279508)
 yes.two_anketa
